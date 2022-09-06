@@ -1,0 +1,15 @@
+.layout {
+    background-color: #F7F7F7;
+    min-height: 100vh;
+}
+
+
+.content {
+    background-color: white;
+    padding-top: 21px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: 0 auto;
+    min-width: 300px;
+    max-width: 1000px;
+}
