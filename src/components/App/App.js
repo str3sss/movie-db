@@ -32,7 +32,7 @@ export default class App extends Component {
     return (
       <Layout className="layout">
         <Content className="content">
-          <Tabs centered>
+          <Tabs centered destroyInactiveTabPane={true}>
             <Tabs.TabPane tab="Search" key={1}>
               <Input
                 placeholder="Type to search..."

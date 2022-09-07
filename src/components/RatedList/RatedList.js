@@ -4,8 +4,10 @@ import { Component } from 'react'
 import Movie from '../Movie/Movie'
 
 export default class RatedList extends Component {
+  state = {
+    data: localStorage.rated ? JSON.parse(localStorage.rated) : [],
+  }
   render() {
-    let data = localStorage.rated ? JSON.parse(localStorage.rated) : []
     return (
       <List
         className="list"
@@ -14,7 +16,7 @@ export default class RatedList extends Component {
           xxl: 2,
           xl: 1,
         }}
-        dataSource={data}
+        dataSource={this.state.data}
         renderItem={(item) => <Movie item={item} />}
       ></List>
     )

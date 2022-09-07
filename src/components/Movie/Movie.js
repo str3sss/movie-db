@@ -6,39 +6,26 @@ import { voteAverageColor } from '../../Services/service'
 import './Movie.css'
 
 const Movie = ({ item }) => {
-  const returnRate = (id) => {
-    let rated = localStorage.getItem('rated')
-    if (rated) {
-      rated = JSON.parse(localStorage.rated)
-      for (let key of rated) {
-        if (key.id == id) {
-          console.log(item.title)
-          console.log(item)
-          return key.rate
-        }
-      }
-    } else {
-      return 0
-    }
-  }
+  const [ls, setLs] = useState(localStorage.rated || '')
 
-  const [rate, setRate] = useState(returnRate(item.id))
-
-  const changeRate = (Value) => {
-    let rated = localStorage.getItem('rated')
-    if (!rated) {
-      const newItem = { ...item, rate: Value }
-      localStorage.setItem('rated', '[' + JSON.stringify(newItem) + ']')
-    } else {
-      rated = JSON.parse(localStorage.rated)
+  const onChangeCallBack = (Value) => {
+    item.rate = Value
+    if (localStorage.rated) {
+      const rated = JSON.parse(localStorage.rated)
       for (let key of rated) {
         if (key.id == item.id) {
           key.rate = Value
+          localStorage.rated = JSON.stringify(rated)
+          setLs(localStorage.rated)
+          return
         }
       }
+      rated.push(item)
       localStorage.rated = JSON.stringify(rated)
+    } else {
+      localStorage.rated = '[' + JSON.stringify(item) + ']'
     }
-    setRate(Value)
+    setLs(localStorage.rated)
   }
 
   const genres = item.genres.map((genre) => {
@@ -49,7 +36,7 @@ const Movie = ({ item }) => {
     )
   })
   return (
-    <List.Item>
+    <List.Item ls={ls}>
       <Card
         hoverable
         style={{
@@ -70,7 +57,7 @@ const Movie = ({ item }) => {
           <div className="genresList ">{genres}</div>
           <Typography.Text>{item.description}</Typography.Text>
           <br />
-          <Rate allowHalf count={10} defaultValue={rate} onChange={(Value) => changeRate(Value)} />
+          <Rate allowHalf count={10} value={item.rate} onChange={(Value) => onChangeCallBack(Value)} />
         </Card.Grid>
       </Card>
     </List.Item>

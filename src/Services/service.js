@@ -30,7 +30,7 @@ export default class MovieAPI {
       img: movie.poster_path,
       releaseDate: movie.release_date,
       description: this.cutDescription(movie.overview),
-      rate: 0,
+      rate: this.getRate(movie.id),
       voteAverage: movie.vote_average,
     }
   }
@@ -44,6 +44,17 @@ export default class MovieAPI {
       }
     })
     return genresNames
+  }
+
+  getRate = (id) => {
+    if (localStorage.rated) {
+      for (let key of JSON.parse(localStorage.rated)) {
+        if (key.id == id) {
+          return key.rate
+        }
+      }
+      return 0
+    }
   }
 }
 
