@@ -1,7 +1,8 @@
 import { genres } from './genres'
 
 class MovieAPI {
-  _apiKey = '58a2e6696802a02e51a5b297dca114ea'
+  // eslint-disable-next-line no-undef
+  _apiKey = process.env.REACT_APP_API_KEY
   _apiBase = 'https://api.themoviedb.org/3/'
 
   async getResoure(url, param = {}) {
@@ -59,4 +60,3 @@ class MovieAPI {
 }
 
 export const MovieService = new MovieAPI()
-// export default MovieService
