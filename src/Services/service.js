@@ -1,6 +1,6 @@
 import { genres } from './genres'
 
-export default class MovieAPI {
+class MovieAPI {
   _apiKey = '58a2e6696802a02e51a5b297dca114ea'
   _apiBase = 'https://api.themoviedb.org/3/'
 
@@ -57,3 +57,6 @@ export default class MovieAPI {
     }
   }
 }
+
+export const MovieService = new MovieAPI()
+// export default MovieService
