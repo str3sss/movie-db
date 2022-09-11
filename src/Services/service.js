@@ -57,10 +57,3 @@ export default class MovieAPI {
     }
   }
 }
-
-export const voteAverageColor = (voteAverage) => {
-  if (voteAverage <= 3) return '#E90000'
-  else if (voteAverage <= 5) return '#E97E00'
-  else if (voteAverage <= 7) return '#E9D100'
-  else return '#66E900'
-}
