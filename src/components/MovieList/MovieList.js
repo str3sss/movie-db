@@ -1,7 +1,7 @@
 import { List, Alert } from 'antd'
 import { Component } from 'react'
 
-import MovieAPI from '../../Services/service'
+import MovieAPI from '../../services/service'
 import Spinner from '../Spiner/Spinner'
 import Movie from '../Movie/Movie'
 
@@ -49,7 +49,6 @@ export default class MovieList extends Component {
     if (!data) {
       return <Spinner />
     }
-
     return (
       <List
         className="list"

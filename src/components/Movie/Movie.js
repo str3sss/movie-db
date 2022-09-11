@@ -2,19 +2,19 @@ import { List, Card, Rate, Typography } from 'antd'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import { voteAverageColor } from '../../Services/service'
+import { voteAverageColor } from '../../helpers/colors'
 import './Movie.css'
 
 const Movie = ({ item }) => {
   const [ls, setLs] = useState(localStorage.rated || '')
 
-  const onChangeCallBack = (Value) => {
-    item.rate = Value
+  const onChangeCallBack = (value) => {
+    item.rate = value
     if (localStorage.rated) {
       const rated = JSON.parse(localStorage.rated)
       for (let key of rated) {
         if (key.id == item.id) {
-          key.rate = Value
+          key.rate = value
           localStorage.rated = JSON.stringify(rated)
           setLs(localStorage.rated)
           return
@@ -57,7 +57,7 @@ const Movie = ({ item }) => {
           <div className="genresList ">{genres}</div>
           <Typography.Text>{item.description}</Typography.Text>
           <br />
-          <Rate allowHalf count={10} value={item.rate} onChange={(Value) => onChangeCallBack(Value)} />
+          <Rate allowHalf count={10} value={item.rate} onChange={(value) => onChangeCallBack(value)} />
         </Card.Grid>
       </Card>
     </List.Item>
