@@ -1,4 +1,4 @@
-import { List, Card, Rate, Typography } from 'antd'
+import { List, Card, Rate, Typography, Image } from 'antd'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -48,7 +48,12 @@ const Movie = ({ item }) => {
           margin: '5px',
         }}
       >
-        <img width={'25%'} height={'200px'} alt="logo" src={`https://image.tmdb.org/t/p/w500/${item.img}`} />
+        <Image
+          width={'25%'}
+          height={'200px'}
+          src={`https://image.tmdb.org/t/p/w500/${item.img}`}
+          fallback="https://ne-vkl.ru/images/placeholder.png"
+        />
         <Card.Grid hoverable={false} style={{ width: '75%', textAlign: 'left' }}>
           {item.title}
           <div style={{ borderColor: voteAverageColor(item.voteAverage) }} className="voteAverage">
