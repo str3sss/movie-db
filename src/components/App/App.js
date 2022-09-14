@@ -1,4 +1,4 @@
-import { Layout, Pagination, Input, Tabs } from 'antd'
+import { Layout, Input, Tabs } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 import { Component } from 'react'
 
@@ -39,8 +39,7 @@ export default class App extends Component {
                 style={{ marginBottom: '20px' }}
                 onPressEnter={this.inputHandler}
               />
-              <MovieList search={search} page={page} />
-              <Pagination total={50} style={{ margin: '20px', textAlign: 'center' }} onChange={this.pageHandler} />
+              <MovieList search={search} page={page} pageHandler={this.pageHandler} />
             </Tabs.TabPane>
             <Tabs.TabPane tab="Rated" key={2}>
               <RatedList />

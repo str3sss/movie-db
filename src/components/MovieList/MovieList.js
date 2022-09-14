@@ -1,4 +1,4 @@
-import { List, Alert } from 'antd'
+import { List, Alert, Pagination } from 'antd'
 import { Component } from 'react'
 
 import { MovieService } from '../../services/service'
@@ -46,20 +46,26 @@ export default class MovieList extends Component {
       return <Spinner />
     }
     return (
-      <List
-        className="list"
-        grid={{
-          gutter: 16,
-          xxl: 2,
-          xl: 2,
-          lg: 2,
-          md: 2,
-          sm: 1,
-          xs: 1,
-        }}
-        dataSource={data}
-        renderItem={(item) => <Movie item={item} />}
-      ></List>
+      <>
+        <List
+          className="list"
+          grid={{
+            gutter: 16,
+            xxl: 2,
+            xl: 2,
+            lg: 2,
+            md: 2,
+            sm: 1,
+            xs: 1,
+          }}
+          dataSource={data}
+          renderItem={(item) => <Movie item={item} />}
+        ></List>
+        {data.length !== 0 && (
+          <Pagination total={50} style={{ margin: '20px', textAlign: 'center' }} onChange={this.props.pageHandler} />
+        )}
+        {console.log(data)}
+      </>
     )
   }
 }
