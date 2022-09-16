@@ -64,7 +64,6 @@ export default class MovieList extends Component {
         {data.length !== 0 && (
           <Pagination total={50} style={{ margin: '20px', textAlign: 'center' }} onChange={this.props.pageHandler} />
         )}
-        {console.log(data)}
       </>
     )
   }

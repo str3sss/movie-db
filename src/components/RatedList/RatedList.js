@@ -5,8 +5,17 @@ import Movie from '../Movie/Movie'
 
 export default class RatedList extends Component {
   state = {
-    data: localStorage.rated ? JSON.parse(localStorage.rated) : [],
+    data: [],
   }
+
+  componentDidMount() {
+    this.setState(() => {
+      if (localStorage.rated) {
+        return { data: JSON.parse(localStorage.rated) }
+      }
+    })
+  }
+
   render() {
     return (
       <List

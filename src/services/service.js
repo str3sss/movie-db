@@ -13,6 +13,11 @@ class MovieAPI {
     return await res.json()
   }
 
+  async getGenres() {
+    const res = await this.getResoure('genre/movie/list')
+    return res.genres
+  }
+
   async searchMovies(query, page = 1) {
     const res = await this.getResoure('search/movie', { query, page })
     return res.results.map(this._transformSearch)
@@ -58,5 +63,4 @@ class MovieAPI {
     }
   }
 }
-
 export const MovieService = new MovieAPI()

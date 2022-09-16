@@ -6,7 +6,7 @@ import { voteAverageColor } from '../../helpers/colors'
 import './Movie.css'
 
 const Movie = ({ item }) => {
-  const [ls, setLs] = useState(localStorage.rated || '')
+  const [data, setData] = useState(localStorage.rated)
 
   const onChangeCallBack = (value) => {
     item.rate = value
@@ -16,7 +16,7 @@ const Movie = ({ item }) => {
         if (key.id == item.id) {
           key.rate = value
           localStorage.rated = JSON.stringify(rated)
-          setLs(localStorage.rated)
+          setData(localStorage.rated)
           return
         }
       }
@@ -25,7 +25,7 @@ const Movie = ({ item }) => {
     } else {
       localStorage.rated = '[' + JSON.stringify(item) + ']'
     }
-    setLs(localStorage.rated)
+    setData(localStorage.rated)
   }
 
   const genres = item.genres.map((genre) => {
@@ -36,7 +36,7 @@ const Movie = ({ item }) => {
     )
   })
   return (
-    <List.Item ls={ls}>
+    <List.Item data={data}>
       <Card
         hoverable
         style={{
