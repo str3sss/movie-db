@@ -1,9 +1,8 @@
-import { genres } from './genres'
-
 class MovieAPI {
   // eslint-disable-next-line no-undef
   _apiKey = process.env.REACT_APP_API_KEY
   _apiBase = 'https://api.themoviedb.org/3/'
+  genres = []
 
   async getResoure(url, param = {}) {
     const res = await fetch(`${this._apiBase}${url}?api_key=${this._apiKey}&` + new URLSearchParams(param))
@@ -15,9 +14,8 @@ class MovieAPI {
 
   async getGenres() {
     const res = await this.getResoure('genre/movie/list')
-    return res.genres
+    this.genres = await res.genres
   }
-
   async searchMovies(query, page = 1) {
     const res = await this.getResoure('search/movie', { query, page })
     return res.results.map(this._transformSearch)
@@ -43,7 +41,7 @@ class MovieAPI {
 
   _transformGenres = (genresIDs) => {
     const genresNames = genresIDs.map((genreID) => {
-      for (let item of genres) {
+      for (let item of this.genres) {
         if (item.id == genreID) {
           return item.name
         }
@@ -64,3 +62,4 @@ class MovieAPI {
   }
 }
 export const MovieService = new MovieAPI()
+MovieService.getGenres()
